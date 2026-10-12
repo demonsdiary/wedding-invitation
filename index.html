@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sophia & Alexander — Wedding Invitation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: {
+                            50: '#f4f7f4',
+                            100: '#e3eae3',
+                            200: '#c7d6c8',
+                            600: '#5c735d',
+                            700: '#485a49',
+                            800: '#3c4b3d',
+                            900: '#2b362c'
+                        },
+                        cream: {
+                            50: '#fdfbf7',
+                            100: '#f7f2e9',
+                            200: '#ede3d1',
+                            300: '#e1d0b5'
+                        },
+                        champagne: {
+                            100: '#f9f1e6',
+                            300: '#e3c8a8',
+                            400: '#d4b28c',
+                            500: '#c59b6d',
+                            600: '#b08253'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                        script: ['Pinyon Script', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #b08253 0%, #e3c8a8 50%, #b08253 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border {
+            border-image: linear-gradient(to bottom right, #e3c8a8, #b08253) 1;
+        }
+
+        /* Glassmorphism backdrop */
+        .glass-panel {
+            background: rgba(253, 251, 247, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fdfbf7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c7d6c8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5c735d;
+        }
+    </style>
+</head>
+<body class="bg-cream-50 text-sage-900 font-sans antialiased selection:bg-champagne-300 selection:text-sage-900 relative overflow-x-hidden">
+
+    <!-- Audio Element (Ambient Music Preview) -->
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=piano-moment-112239.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Floating Audio Toggle Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="music-toggle" onclick="toggleAudio()" class="w-12 h-12 rounded-full bg-sage-700 text-cream-50 shadow-xl flex items-center justify-center hover:bg-champagne-500 transition-all duration-300 focus:outline-none group border border-champagne-300/40" title="Toggle Background Music">
+            <i id="music-icon" class="fas fa-music text-lg group-hover:scale-110 transition-transform"></i>
+            <span class="absolute -top-1 -right-1 w-3 h-3 bg-champagne-400 rounded-full animate-ping hidden" id="music-indicator"></span>
+        </button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-40 glass-panel border-b border-champagne-300/30 transition-all duration-300">
+        <div class="max-w-6xl mx-mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="font-script text-3xl md:text-4xl text-champagne-600 font-bold hover:text-sage-700 transition">S & A</a>
+            <div class="hidden md:flex space-x-8 font-serif text-lg tracking-wider text-sage-800">
+                <a href="#our-story" class="hover:text-champagne-500 transition">Our Story</a>
+                <a href="#event" class="hover:text-champagne-500 transition">Schedule & Venue</a>
+                <a href="#gallery" class="hover:text-champagne-500 transition">Gallery</a>
+                <a href="#registry" class="hover:text-champagne-500 transition">Registry</a>
+                <a href="#rsvp" class="hover:text-champagne-500 transition font-semibold text-champagne-600">RSVP</a>
+            </div>
+            <a href="#rsvp" class="md:hidden bg-sage-700 text-cream-50 px-4 py-1.5 rounded-full text-xs font-sans tracking-widest uppercase hover:bg-champagne-500 transition">RSVP</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen relative flex items-center justify-center pt-20 px-4 overflow-hidden">
+        <!-- Background Decorative Floral Graphic SVG Overlay -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center">
+            <svg class="w-[800px] h-[800px] text-sage-800" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M42.7,-62.9C53.8,-52.8,60.2,-37.8,64.2,-22.6C68.2,-7.4,69.8,8,64.7,21.5C59.6,35,47.8,46.5,34.6,54.8C21.4,63.1,6.8,68.2,-8.1,69.3C-23,70.4,-38.2,67.5,-50.2,58.8C-62.2,50,-71,35.4,-73.4,19.6C-75.8,3.8,-71.8,-13.2,-63.3,-26.8C-54.8,-40.4,-41.8,-50.6,-28.4,-59.4C-15,-68.2,-1.2,-75.6,13.7,-74.2C28.6,-72.8,31.6,-73,42.7,-62.9Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+
+        <div class="text-center z-10 max-w-3xl mx-auto space-y-6 animate-fade-in">
+            <span class="font-sans text-sm md:text-base tracking-[0.3em] uppercase text-champagne-600 font-medium">Together with their families</span>
+            
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-sage-900 tracking-tight leading-tight">
+                Sophia Thorne <br/>
+                <span class="font-script text-4xl md:text-6xl lg:text-7xl gold-gradient-text my-2 inline-block">&</span> <br/>
+                Alexander Vance
+            </h1>
+            
+            <p class="font-serif text-xl md:text-2xl italic text-sage-700 font-light max-w-xl mx-auto">
+                Request the honor of your presence as they celebrate their union in marriage
+            </p>
+
+            <div class="pt-6 flex flex-col items-center justify-center space-y-2">
+                <div class="w-16 h-[1px] bg-champagne-400"></div>
+                <p class="font-serif text-2xl md:text-3xl tracking-widest text-sage-800 uppercase pt-2">Saturday, October 23, 2027</p>
+                <p class="font-sans text-xs tracking-[0.25em] text-champagne-600 uppercase">Napa Valley, California</p>
+                <div class="w-16 h-[1px] bg-champagne-400"></div>
+            </div>
+
+            <div class="pt-8 flex flex-wrap justify-center gap-4">
+                <a href="#rsvp" class="bg-sage-700 hover:bg-sage-800 text-cream-50 px-8 py-3.5 rounded-full font-sans text-xs tracking-[0.2em] uppercase transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                    RSVP Now
+                </a>
+                <button onclick="addToCalendar()" class="bg-transparent border border-champagne-500 text-sage-800 hover:bg-champagne-100 px-8 py-3.5 rounded-full font-sans text-xs tracking-[0.2em] uppercase transition-all flex items-center space-x-2">
+                    <i class="far fa-calendar-plus text-champagne-600"></i>
+                    <span>Add To Calendar</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="py-16 bg-sage-50 border-y border-champagne-300/30">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="font-serif text-2xl md:text-3xl text-sage-800 tracking-wider mb-8 italic">Counting Down to the Big Day</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <div class="bg-cream-50 p-6 rounded-2xl shadow-sm border border-champagne-200/50">
+                    <span id="cd-days" class="font-serif text-4xl md:text-5xl font-semibold text-champagne-600">00</span>
+                    <span class="block font-sans text-xs uppercase tracking-widest text-sage-600 mt-2">Days</span>
+                </div>
+                <div class="bg-cream-50 p-6 rounded-2xl shadow-sm border border-champagne-200/50">
+                    <span id="cd-hours" class="font-serif text-4xl md:text-5xl font-semibold text-champagne-600">00</span>
+                    <span class="block font-sans text-xs uppercase tracking-widest text-sage-600 mt-2">Hours</span>
+                </div>
+                <div class="bg-cream-50 p-6 rounded-2xl shadow-sm border border-champagne-200/50">
+                    <span id="cd-minutes" class="font-serif text-4xl md:text-5xl font-semibold text-champagne-600">00</span>
+                    <span class="block font-sans text-xs uppercase tracking-widest text-sage-600 mt-2">Minutes</span>
+                </div>
+                <div class="bg-cream-50 p-6 rounded-2xl shadow-sm border border-champagne-200/50">
+                    <span id="cd-seconds" class="font-serif text-4xl md:text-5xl font-semibold text-champagne-600">00</span>
+                    <span class="block font-sans text-xs uppercase tracking-widest text-sage-600 mt-2">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="our-story" class="py-24 max-w-5xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="font-script text-3xl text-champagne-600">How It Started</span>
+            <h2 class="font-serif text-4xl md:text-5xl text-sage-900 mt-1">Our Love Story</h2>
+            <div class="w-12 h-[1px] bg-champagne-400 mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="relative group">
+                <div class="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-cream-100">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800" alt="Sophia and Alexander" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                </div>
+                <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-champagne-100 border border-champagne-300 flex items-center justify-center p-4 shadow-lg hidden sm:flex">
+                    <span class="font-script text-2xl text-champagne-600 text-center">Forever & Always</span>
+                </div>
+            </div>
+
+            <div class="space-y-6 text-sage-800 font-serif text-lg leading-relaxed">
+                <p>
+                    We first met on a brisk autumn afternoon in San Francisco. What began as an accidental mix-up over coffee quickly turned into hours of uninterrupted conversation, shared laughter, and a deep, effortless connection.
+                </p>
+                <p>
+                    Over five wonderful years filled with global adventures, quiet weekend mornings, and endless support for one another's dreams, Alexander proposed under a canopy of stars during a weekend getaway to Big Sur.
+                </p>
+                <p class="italic text-champagne-600 font-semibold">
+                    "We cannot wait to write the next chapter of our lives, surrounded by the people we cherish most."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details & Schedule -->
+    <section id="event" class="py-24 bg-cream-100/60 border-y border-champagne-200/50">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="font-script text-3xl text-champagne-600">Join Us</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-sage-900 mt-1">Schedule & Location</h2>
+                <div class="w-12 h-[1px] bg-champagne-400 mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Ceremony Card -->
+                <div class="bg-cream-50 p-8 md:p-10 rounded-3xl shadow-sm border border-champagne-200/60 text-center space-y-4 hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-full bg-sage-100 text-sage-700 flex items-center justify-center mx-auto text-xl">
+                        <i class="fas fa-church"></i>
+                    </div>
+                    <span class="font-sans text-xs tracking-[0.2em] uppercase text-champagne-600 block">The Ceremony</span>
+                    <h3 class="font-serif text-3xl text-sage-900">4:00 PM</h3>
+                    <p class="font-serif text-lg text-sage-800">The Estate Gardens</p>
+                    <p class="font-sans text-sm text-sage-600 font-light">1234 Vineyard Lane, St. Helena, CA 94574</p>
+                    <p class="font-serif italic text-xs text-sage-500 pt-2">Attire: Formal / Black Tie Optional</p>
+                    <div class="pt-4">
+                        <a href="https://maps.google.com" target="_blank" rel="noopener" class="inline-flex items-center space-x-2 text-xs font-sans tracking-wider uppercase text-champagne-600 hover:text-sage-800 transition">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Reception Card -->
+                <div class="bg-cream-50 p-8 md:p-10 rounded-3xl shadow-sm border border-champagne-200/60 text-center space-y-4 hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-full bg-sage-100 text-sage-700 flex items-center justify-center mx-auto text-xl">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <span class="font-sans text-xs tracking-[0.2em] uppercase text-champagne-600 block">The Reception</span>
+                    <h3 class="font-serif text-3xl text-sage-900">6:00 PM</h3>
+                    <p class="font-serif text-lg text-sage-800">Grand Barrel Room & Terrace</p>
+                    <p class="font-sans text-sm text-sage-600 font-light">1234 Vineyard Lane, St. Helena, CA 94574</p>
+                    <p class="font-serif italic text-xs text-sage-500 pt-2">Dinner, Dancing & Celebrations to Follow</p>
+                    <div class="pt-4">
+                        <a href="https://maps.google.com" target="_blank" rel="noopener" class="inline-flex items-center space-x-2 text-xs font-sans tracking-wider uppercase text-champagne-600 hover:text-sage-800 transition">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="mt-20 max-w-3xl mx-auto">
+                <h3 class="font-serif text-2xl text-center text-sage-900 mb-10 italic">Day Timeline</h3>
+                
+                <div class="space-y-6 relative before:absolute before:inset-0 before:left-1/2 before:-translate-x-1/2 before:w-[1px] before:bg-champagne-300">
+                    <div class="flex items-center justify-between relative">
+                        <div class="w-5/12 text-right pr-6 font-serif text-lg text-sage-800">3:30 PM</div>
+                        <div class="w-4 h-4 rounded-full bg-champagne-400 border-4 border-cream-50 z-10"></div>
+                        <div class="w-5/12 pl-6 font-sans text-sm text-sage-600">Guest Arrival</div>
+                    </div>
+
+                    <div class="flex items-center justify-between relative">
+                        <div class="w-5/12 text-right pr-6 font-serif text-lg text-sage-800">4:00 PM</div>
+                        <div class="w-4 h-4 rounded-full bg-champagne-400 border-4 border-cream-50 z-10"></div>
+                        <div class="w-5/12 pl-6 font-sans text-sm text-sage-600">Ceremony Starts</div>
+                    </div>
+
+                    <div class="flex items-center justify-between relative">
+                        <div class="w-5/12 text-right pr-6 font-serif text-lg text-sage-800">5:00 PM</div>
+                        <div class="w-4 h-4 rounded-full bg-champagne-400 border-4 border-cream-50 z-10"></div>
+                        <div class="w-5/12 pl-6 font-sans text-sm text-sage-600">Cocktail Hour</div>
+                    </div>
+
+                    <div class="flex items-center justify-between relative">
+                        <div class="w-5/12 text-right pr-6 font-serif text-lg text-sage-800">6:30 PM</div>
+                        <div class="w-4 h-4 rounded-full bg-champagne-400 border-4 border-cream-50 z-10"></div>
+                        <div class="w-5/12 pl-6 font-sans text-sm text-sage-600">Dinner & Speeches</div>
+                    </div>
+
+                    <div class="flex items-center justify-between relative">
+                        <div class="w-5/12 text-right pr-6 font-serif text-lg text-sage-800">8:30 PM</div>
+                        <div class="w-4 h-4 rounded-full bg-champagne-400 border-4 border-cream-50 z-10"></div>
+                        <div class="w-5/12 pl-6 font-sans text-sm text-sage-600">Dancing & Festivities</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="py-24 max-w-6xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="font-script text-3xl text-champagne-600">Memories</span>
+            <h2 class="font-serif text-4xl md:text-5xl text-sage-900 mt-1">Photo Gallery</h2>
+            <div class="w-12 h-[1px] bg-champagne-400 mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="aspect-[3/4] overflow-hidden rounded-2xl shadow-md group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200')">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600" alt="Gallery Photo 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            </div>
+            <div class="aspect-[3/4] overflow-hidden rounded-2xl shadow-md group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=1200')">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=600" alt="Gallery Photo 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            </div>
+            <div class="aspect-[3/4] overflow-hidden rounded-2xl shadow-md group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=1200')">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=600" alt="Gallery Photo 3" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Lightbox Modal -->
+    <div id="image-modal" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4" onclick="closeModal()">
+        <button class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+        <img id="modal-img" src="" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl" alt="Enlarged photo">
+    </div>
+
+    <!-- Registry Section -->
+    <section id="registry" class="py-20 bg-sage-900 text-cream-50">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
+            <span class="font-script text-3xl text-champagne-300">Generosity</span>
+            <h2 class="font-serif text-4xl md:text-5xl">Gift Registry</h2>
+            <div class="w-12 h-[1px] bg-champagne-400 mx-auto"></div>
+            
+            <p class="font-serif text-lg text-cream-200 max-w-xl mx-auto leading-relaxed">
+                Your presence on our special day is the greatest gift of all. However, if you wish to honor us with a gift, we have registered at the following stores:
+            </p>
+
+            <div class="pt-8 flex flex-wrap justify-center gap-6">
+                <a href="#" target="_blank" class="bg-cream-50/10 hover:bg-cream-50/20 text-cream-100 border border-champagne-300/30 px-8 py-4 rounded-xl font-serif text-xl tracking-wider transition flex items-center space-x-3">
+                    <i class="fas fa-gift text-champagne-400"></i>
+                    <span>Zola Registry</span>
+                </a>
+                <a href="#" target="_blank" class="bg-cream-50/10 hover:bg-cream-50/20 text-cream-100 border border-champagne-300/30 px-8 py-4 rounded-xl font-serif text-xl tracking-wider transition flex items-center space-x-3">
+                    <i class="fas fa-shopping-bag text-champagne-400"></i>
+                    <span>Crate & Barrel</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-24 max-w-3xl mx-auto px-6">
+        <div class="bg-cream-50 p-8 md:p-12 rounded-3xl shadow-xl border border-champagne-300/50">
+            <div class="text-center mb-10">
+                <span class="font-script text-3xl text-champagne-600">Join the Celebration</span>
+                <h2 class="font-serif text-4xl text-sage-900 mt-1">Kindly Respond</h2>
+                <p class="font-sans text-xs tracking-widest uppercase text-sage-600 mt-2">Please reply by September 15, 2027</p>
+            </div>
+
+            <!-- RSVP Form -->
+            <form id="rsvp-form" onsubmit="handleRSVP(event)" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block font-sans text-xs uppercase tracking-wider text-sage-700 mb-2">First Name *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-champagne-300 bg-white/70 focus:outline-none focus:ring-2 focus:ring-champagne-400 text-sage-900">
+                    </div>
+                    <div>
+                        <label class="block font-sans text-xs uppercase tracking-wider text-sage-700 mb-2">Last Name *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-xl border border-champagne-300 bg-white/70 focus:outline-none focus:ring-2 focus:ring-champagne-400 text-sage-900">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-sans text-xs uppercase tracking-wider text-sage-700 mb-2">Will you be attending? *</label>
+                    <select required class="w-full px-4 py-3 rounded-xl border border-champagne-300 bg-white/70 focus:outline-none focus:ring-2 focus:ring-champagne-400 text-sage-900">
+                        <option value="yes">Joyfully Accepts</option>
+                        <option value="no">Regretfully Declines</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-sans text-xs uppercase tracking-wider text-sage-700 mb-2">Number of Guests</label>
+                    <input type="number" min="1" max="5" value="1" class="w-full px-4 py-3 rounded-xl border border-champagne-300 bg-white/70 focus:outline-none focus:ring-2 focus:ring-champagne-400 text-sage-900">
+                </div>
+
+                <div>
+                    <label class="block font-sans text-xs uppercase tracking-wider text-sage-700 mb-2">Dietary Restrictions or Notes</label>
+                    <textarea rows="3" placeholder="e.g. Vegetarian, Gluten Free, or Song Requests" class="w-full px-4 py-3 rounded-xl border border-champagne-300 bg-white/70 focus:outline-none focus:ring-2 focus:ring-champagne-400 text-sage-900"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-sage-700 hover:bg-sage-800 text-cream-50 py-4 rounded-xl font-sans text-xs tracking-[0.2em] uppercase transition shadow-lg">
+                    Send Response
+                </button>
+            </form>
+
+            <!-- Confirmation Message Box -->
+            <div id="rsvp-success" class="hidden text-center py-8 space-y-4">
+                <div class="w-16 h-16 rounded-full bg-sage-100 text-sage-700 flex items-center justify-center mx-auto text-2xl">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h3 class="font-serif text-3xl text-sage-900">Thank You!</h3>
+                <p class="font-serif text-lg text-sage-700">Your RSVP response has been recorded. We look forward to celebrating with you!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-champagne-300/30 text-center space-y-4">
+        <p class="font-script text-4xl text-champagne-600">Sophia & Alexander</p>
+        <p class="font-sans text-xs uppercase tracking-[0.25em] text-sage-600">October 23, 2027 • Napa Valley, CA</p>
+    </footer>
+
+    <script>
+        // --- Countdown Timer Logic ---
+        const targetDate = new Date("October 23, 2027 16:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById("cd-days").innerText = days < 10 ? "0" + days : days;
+                document.getElementById("cd-hours").innerText = hours < 10 ? "0" + hours : hours;
+                document.getElementById("cd-minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+                document.getElementById("cd-seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- Background Audio Toggle Logic ---
+        const audio = document.getElementById('bg-music');
+        const musicIcon = document.getElementById('music-icon');
+        const musicIndicator = document.getElementById('music-indicator');
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.className = "fas fa-music text-lg";
+                musicIndicator.classList.add("hidden");
+            } else {
+                audio.play().then(() => {
+                    musicIcon.className = "fas fa-pause text-lg";
+                    musicIndicator.classList.remove("hidden");
+                }).catch(err => console.log("Audio playback error:", err));
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // --- Gallery Lightbox Modal ---
+        function openModal(src) {
+            document.getElementById('modal-img').src = src;
+            document.getElementById('image-modal').classList.remove('hidden');
+            document.getElementById('image-modal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('image-modal').classList.add('hidden');
+            document.getElementById('image-modal').classList.remove('flex');
+        }
+
+        // --- Calendar Helper ---
+        function addToCalendar() {
+            const title = encodeURIComponent("Sophia & Alexander's Wedding");
+            const details = encodeURIComponent("Join us to celebrate the wedding of Sophia Thorne and Alexander Vance!");
+            const location = encodeURIComponent("St. Helena, Napa Valley, CA");
+            const startDate = "20271023T230000Z";
+            const endDate = "20271024T060000Z";
+
+            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${details}&location=${location}`;
+            window.open(googleCalendarUrl, '_blank');
+        }
+
+        // --- Form Handler ---
+        function handleRSVP(event) {
+            event.preventDefault();
+            document.getElementById('rsvp-form').classList.add('hidden');
+            document.getElementById('rsvp-success').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
